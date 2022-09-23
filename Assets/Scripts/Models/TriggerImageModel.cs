@@ -6,6 +6,7 @@ public class TriggerImageModel : MonoBehaviour
 {
     [SerializeField] DirectionArrowController directionArrowController;
     [SerializeField] PhotoController photoController;
+    [SerializeField] WomanModel womanModel;
     public DirectionModel CurrentDirectionArrow;
 
 
@@ -31,7 +32,7 @@ public class TriggerImageModel : MonoBehaviour
         if (CurrentDirectionArrow.Direction == dir)
         {
             CurrentDirectionArrow.OnCorrectSwipe();
-            photoController.ShowPhoto(0);
+            photoController.ShowPhoto(womanModel.GetAnimationIndex());
         }
         else
         {

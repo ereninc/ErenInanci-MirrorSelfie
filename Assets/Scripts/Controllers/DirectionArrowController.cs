@@ -9,6 +9,7 @@ public class DirectionArrowController : ControllerModel
     [SerializeField] float maxSpawnTime;
     [SerializeField] Transform spawnPos;
     [SerializeField] int directionArrowCount;
+    [SerializeField] PhotoController photoController;
 
     public override void Initialize()
     {
@@ -31,9 +32,9 @@ public class DirectionArrowController : ControllerModel
             directionArrowCount--;
             if (directionArrowCount == 0)
             {
-                Debug.Log("LEVEL COMPLETE");
                 ScreenController.Instance.ShowScreen(2);
                 GameStateController.Instance.ChangeState(GameStates.End);
+                photoController.OnEnd();
             }
         }
     }
