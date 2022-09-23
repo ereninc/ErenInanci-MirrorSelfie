@@ -3494,6 +3494,7 @@ MonoBehaviour:
   photoController: {fileID: 558894303}
   womanModel: {fileID: 1912636329}
   flashController: {fileID: 307319795}
+  triggerImage: {fileID: 833558206}
   CurrentDirectionArrow: {fileID: 0}
 --- !u!50 &833558210
 Rigidbody2D:
