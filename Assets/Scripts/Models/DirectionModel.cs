@@ -11,11 +11,6 @@ public class DirectionModel : ObjectModel
     [SerializeField] Animator animator;
     [SerializeField] Image arrowImage;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-    }
-
     public void OnSpawn(Transform targetParent)
     {
         SetActivate();

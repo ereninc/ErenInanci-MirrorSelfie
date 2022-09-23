@@ -21,8 +21,6 @@ public class PointerController : ControllerModel
     public override void Initialize()
     {
         base.Initialize();
-        IsQuickTime = false;
-        CurrentDirection = SwipeDirections.None;
         if (Instance != null)
         {
             Destroy(Instance);
@@ -31,6 +29,9 @@ public class PointerController : ControllerModel
         {
             Instance = this;
         }
+
+        IsQuickTime = false;
+        CurrentDirection = SwipeDirections.None;
     }
 
     public override void ControllerUpdate()
@@ -65,13 +66,11 @@ public class PointerController : ControllerModel
             {
                 OnSwipeRight.Invoke();
                 CurrentDirection = SwipeDirections.Right;
-                //Debug.Log("right");
             }
             else if (deltaX < 0)
             {
                 OnSwipeLeft.Invoke();
                 CurrentDirection = SwipeDirections.Left;
-                //Debug.Log("left");
             }
         }
 
@@ -82,13 +81,11 @@ public class PointerController : ControllerModel
             {
                 OnSwipeUp.Invoke();
                 CurrentDirection = SwipeDirections.Up;
-                //Debug.Log("up");
             }
             else if (deltaY < 0)
             {
                 OnSwipeDown.Invoke();
                 CurrentDirection = SwipeDirections.Down;
-                //Debug.Log("down");
             }
         }
         triggerModel.CheckDirection(CurrentDirection);

@@ -10,12 +10,10 @@ public class ScreenModel : ObjectModel
     public void Show()
     {
         SetActivate();
-        //animator.Play("Intro");
     }
 
     public void Hide() 
     {
-        //animator.Play("Outro");
         SetDeactive();
     }
 

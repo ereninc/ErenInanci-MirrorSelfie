@@ -8,11 +8,6 @@ public class WomanModel : ObjectModel
     private int animationIndex;
     private int lastIndex;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-    }
-
     public void SetAnimation()
     {
         animationIndex = getRandom(0, 4);

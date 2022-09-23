@@ -19,6 +19,6 @@ public class PhotoModel : ObjectModel
     public void OnEnd()
     {
         animator.enabled = false;
-        transform.DOLocalMove(Random.insideUnitCircle * 500, 0.25f);
+        transform.DOLocalMove(Random.insideUnitCircle * 500, 0.55f);
     }
 }
