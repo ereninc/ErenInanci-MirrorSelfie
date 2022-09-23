@@ -5,6 +5,7 @@ using UnityEngine;
 public class WomanModel : ObjectModel
 {
     [SerializeField] Animator animator;
+    [SerializeField] PhonePositionHandler phonePositionHandler;
     private int animationIndex;
     private int lastIndex;
 
@@ -12,6 +13,7 @@ public class WomanModel : ObjectModel
     {
         animationIndex = getRandom(0, 4);
         animator.SetTrigger("Pose_" + animationIndex.ToString());
+        phonePositionHandler.SetPosition(animationIndex);
     }
 
     public int GetAnimationIndex()
