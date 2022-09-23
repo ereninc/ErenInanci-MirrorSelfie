@@ -10,4 +10,10 @@ public class WomanModel : ObjectModel
     {
         base.Initialize();
     }
+
+    public void SetAnimation()
+    {
+        int index = Random.Range(0, 4);
+        animator.SetTrigger("Pose_" + index.ToString());
+    }
 }
