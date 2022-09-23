@@ -10,10 +10,13 @@ public class DirectionArrowController : ControllerModel
     [SerializeField] Transform spawnPos;
     [SerializeField] int directionArrowCount;
     [SerializeField] PhotoController photoController;
+    [SerializeField] LevelModel activeLevel;
+    int levelDataIndex = 0;
 
     public override void Initialize()
     {
         base.Initialize();
+        activeLevel = LevelController.Controller.LoadedLevel;
     }
 
     public override void ControllerUpdate()
@@ -59,9 +62,11 @@ public class DirectionArrowController : ControllerModel
     {
         DirectionModel dirModel = directionArrowPool.GetDeactiveItem<DirectionModel>();
         dirModel.OnSpawn(spawnPos);
-        dirModel.SetDirection(getRandomDir());
+        dirModel.SetDirection(activeLevel.LevelDatas[levelDataIndex]);
+        levelDataIndex++;
     }
 
+    //Change this to level data.
     private SwipeDirections getRandomDir()
     {
         SwipeDirections dir = (SwipeDirections)Random.Range(0, 4);
