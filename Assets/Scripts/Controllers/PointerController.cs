@@ -32,11 +32,11 @@ public class PointerController : ControllerModel
         if (Input.GetMouseButtonUp(0))
         {
             onPointerDownPos = Input.mousePosition;
-            CheckSwipe();
+            checkSwipe();
         }
     }
 
-    private void CheckSwipe()
+    private void checkSwipe()
     {
         float deltaX = onPointerDownPos.x - onPointerUpPos.x;
         if (Mathf.Abs(deltaX) > SwipeThreshold)
