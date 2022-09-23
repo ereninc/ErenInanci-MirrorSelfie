@@ -4,7 +4,10 @@ using UnityEngine.EventSystems;
 
 public class PointerController : ControllerModel
 {
+    [SerializeField] TriggerImageModel triggerModel;
+
     public static PointerController Instance;
+    public SwipeDirections CurrentDirection;
     public float SwipeThreshold = 50f;
     public UnityEvent OnSwipeLeft;
     public UnityEvent OnSwipeRight;
@@ -19,6 +22,7 @@ public class PointerController : ControllerModel
     {
         base.Initialize();
         IsQuickTime = false;
+        CurrentDirection = SwipeDirections.None;
         if (Instance != null)
         {
             Destroy(Instance);
@@ -60,11 +64,13 @@ public class PointerController : ControllerModel
             if (deltaX > 0)
             {
                 OnSwipeRight.Invoke();
+                CurrentDirection = SwipeDirections.Right;
                 //Debug.Log("right");
             }
             else if (deltaX < 0)
             {
                 OnSwipeLeft.Invoke();
+                CurrentDirection = SwipeDirections.Left;
                 //Debug.Log("left");
             }
         }
@@ -75,14 +81,17 @@ public class PointerController : ControllerModel
             if (deltaY > 0)
             {
                 OnSwipeUp.Invoke();
+                CurrentDirection = SwipeDirections.Up;
                 //Debug.Log("up");
             }
             else if (deltaY < 0)
             {
                 OnSwipeDown.Invoke();
+                CurrentDirection = SwipeDirections.Down;
                 //Debug.Log("down");
             }
         }
+        triggerModel.CheckDirection(CurrentDirection);
         onPointerUpPos = onPointerDownPos;
     }
 }

@@ -8,6 +8,7 @@ public class DirectionArrowController : ControllerModel
     [SerializeField] float spawnInterval;
     [SerializeField] float maxSpawnTime;
     [SerializeField] Transform spawnPos;
+    [SerializeField] int directionArrowCount;
 
     public override void Initialize()
     {
@@ -25,13 +26,23 @@ public class DirectionArrowController : ControllerModel
 
     private void directionControllerUpdate() 
     {
-        if (spawnInterval > 0)
+        if (directionArrowCount > 0)
         {
-            spawnInterval -= Time.deltaTime;
-            if (spawnInterval <= 0)
+            if (spawnInterval > 0)
             {
-                spawnDirectionArrow();
-                spawnInterval = maxSpawnTime;
+                spawnInterval -= Time.deltaTime;
+                if (spawnInterval <= 0)
+                {
+                    spawnDirectionArrow();
+                    directionArrowCount--;
+                    if (directionArrowCount == 0)
+                    {
+                        Debug.Log("LEVEL COMPLETE");
+                        ScreenController.Instance.ShowScreen(2);
+                        GameStateController.Instance.ChangeState(GameStates.End);
+                    }
+                    spawnInterval = maxSpawnTime;
+                }
             }
         }
     }

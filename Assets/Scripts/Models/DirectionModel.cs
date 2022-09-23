@@ -2,39 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class DirectionModel : ObjectModel
 {
     public SwipeDirections Direction;
     [SerializeField] Transform targetPos;
+    [SerializeField] Animator animator;
+    [SerializeField] Image arrowImage;
 
     public override void Initialize()
     {
         base.Initialize();
     }
 
-    public void OnSpawn(Transform targetParent) 
+    public void OnSpawn(Transform targetParent)
     {
         SetActivate();
+        setDefaultValues();
         transform.position = targetParent.position;
-        transform.DOMoveX(targetPos.position.x, 5f).SetEase(Ease.Linear).OnComplete(() => 
-        { 
+        transform.DOMoveX(targetPos.position.x, 5f).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            setDefaultValues();
             SetDeactive();
             DOTween.Kill(transform);
         });
     }
 
-    public void OnCorrectSwipe() 
+    public void OnCorrectSwipe()
     {
-        
+        animator.Play("OnCorrect");
     }
 
-    public void OnFailSwipe() 
+    public void OnFailSwipe()
     {
-        
+        OnAnswered();
     }
 
-    public void SetDirection(SwipeDirections dir) 
+    public void SetDirection(SwipeDirections dir)
     {
         switch (dir)
         {
@@ -60,5 +65,19 @@ public class DirectionModel : ObjectModel
             default:
                 break;
         }
+    }
+
+    public void OnAnswered()
+    {
+        setDefaultValues();
+        SetDeactive();
+        DOTween.Kill(transform);
+    }
+
+    private void setDefaultValues()
+    {
+        animator.Play("Idle");
+        arrowImage.color = new Color(1, 1, 1, 1);
+        transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);
     }
 }

@@ -16,6 +16,7 @@ public class ScreenModel : ObjectModel
     public void Hide() 
     {
         //animator.Play("Outro");
+        SetDeactive();
     }
 
     public void OnNextLevel() 

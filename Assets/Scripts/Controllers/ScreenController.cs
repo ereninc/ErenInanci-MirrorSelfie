@@ -22,6 +22,10 @@ public class ScreenController : ControllerModel
 
     public void ShowScreen(int index) 
     {
+        for (int i = 0; i < screens.Length; i++)
+        {
+            screens[i].Hide();
+        }
         screens[index].Show();
     }
 }
