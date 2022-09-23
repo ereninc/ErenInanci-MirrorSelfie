@@ -24,7 +24,21 @@ public class DirectionArrowController : ControllerModel
         }
     }
 
-    private void directionControllerUpdate() 
+    public void DecreaseArrowCount()
+    {
+        if (directionArrowCount > 0)
+        {
+            directionArrowCount--;
+            if (directionArrowCount == 0)
+            {
+                Debug.Log("LEVEL COMPLETE");
+                ScreenController.Instance.ShowScreen(2);
+                GameStateController.Instance.ChangeState(GameStates.End);
+            }
+        }
+    }
+
+    private void directionControllerUpdate()
     {
         if (directionArrowCount > 0)
         {
@@ -34,27 +48,20 @@ public class DirectionArrowController : ControllerModel
                 if (spawnInterval <= 0)
                 {
                     spawnDirectionArrow();
-                    directionArrowCount--;
-                    if (directionArrowCount == 0)
-                    {
-                        Debug.Log("LEVEL COMPLETE");
-                        ScreenController.Instance.ShowScreen(2);
-                        GameStateController.Instance.ChangeState(GameStates.End);
-                    }
                     spawnInterval = maxSpawnTime;
                 }
             }
         }
     }
 
-    private void spawnDirectionArrow() 
+    private void spawnDirectionArrow()
     {
         DirectionModel dirModel = directionArrowPool.GetDeactiveItem<DirectionModel>();
         dirModel.OnSpawn(spawnPos);
         dirModel.SetDirection(getRandomDir());
     }
 
-    private SwipeDirections getRandomDir() 
+    private SwipeDirections getRandomDir()
     {
         SwipeDirections dir = (SwipeDirections)Random.Range(0, 4);
         return dir;

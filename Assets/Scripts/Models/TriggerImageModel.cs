@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class TriggerImageModel : MonoBehaviour
 {
+    [SerializeField] DirectionArrowController directionArrowController;
+    [SerializeField] PhotoController photoController;
     public DirectionModel CurrentDirectionArrow;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,10 +31,12 @@ public class TriggerImageModel : MonoBehaviour
         if (CurrentDirectionArrow.Direction == dir)
         {
             CurrentDirectionArrow.OnCorrectSwipe();
+            photoController.ShowPhoto(0);
         }
         else
         {
             CurrentDirectionArrow.OnFailSwipe();
         }
+        directionArrowController.DecreaseArrowCount();
     }
 }

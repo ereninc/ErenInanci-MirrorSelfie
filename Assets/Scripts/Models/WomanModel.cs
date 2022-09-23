@@ -5,6 +5,7 @@ using UnityEngine;
 public class WomanModel : ObjectModel
 {
     [SerializeField] Animator animator;
+    private int animationIndex;
     private int lastIndex;
 
     public override void Initialize()
@@ -14,8 +15,13 @@ public class WomanModel : ObjectModel
 
     public void SetAnimation()
     {
-        int index = getRandom(0, 4);
-        animator.SetTrigger("Pose_" + index.ToString());
+        animationIndex = getRandom(0, 4);
+        animator.SetTrigger("Pose_" + animationIndex.ToString());
+    }
+
+    public int GetAnimationIndex()
+    {
+        return animationIndex;
     }
 
     private int getRandom(int min, int max)

@@ -36,7 +36,7 @@ public class DirectionModel : ObjectModel
 
     public void OnFailSwipe()
     {
-        OnAnswered();
+        animator.Play("OnFail");
     }
 
     public void SetDirection(SwipeDirections dir)
