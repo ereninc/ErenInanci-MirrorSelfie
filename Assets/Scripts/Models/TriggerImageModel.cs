@@ -7,8 +7,9 @@ public class TriggerImageModel : MonoBehaviour
     [SerializeField] DirectionArrowController directionArrowController;
     [SerializeField] PhotoController photoController;
     [SerializeField] WomanModel womanModel;
-    public DirectionModel CurrentDirectionArrow;
+    [SerializeField] FlashController flashController;
 
+    public DirectionModel CurrentDirectionArrow;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -33,6 +34,7 @@ public class TriggerImageModel : MonoBehaviour
         {
             CurrentDirectionArrow.OnCorrectSwipe();
             photoController.ShowPhoto(womanModel.GetAnimationIndex());
+            flashController.Flash();
         }
         else
         {
